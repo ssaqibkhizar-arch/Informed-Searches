@@ -9,17 +9,13 @@ def astarVisualizer(draw, grid, start, end, heuristic):
     """
     count = 0
     open_set = PriorityQueue()
-    # Queue stores: (f_score, insertion_count, node)
     open_set.put((0, count, start))
     
     open_set_hash = {start}
-    
-    # g_score maps each node to the cost of the shortest path found so far from start to that node.
-    # We initialize all nodes with infinity, except the start node which is 0.
+
     g_score = {node: float('inf') for row in grid for node in row}
     g_score[start] = 0
-    
-    # f_score maps each node to the estimated total cost (g + h).
+
     f_score = {node: float('inf') for row in grid for node in row}
     f_score[start] = heuristic(start.getPos(), end.getPos())
     
@@ -46,7 +42,6 @@ def astarVisualizer(draw, grid, start, end, heuristic):
             
         # Explore neighbors
         for neighbor in current.neighbors:
-            # The distance from current to a neighbor is 1 in a standard grid
             tentative_g_score = g_score[current] + 1
             
             # If we found a strictly shorter path to this neighbor
@@ -64,10 +59,9 @@ def astarVisualizer(draw, grid, start, end, heuristic):
                         neighbor.makeOpen()
                         
         nodes_expanded += 1
-        draw() # Update the Pygame display
+        draw() 
         
         if current != start:
             current.makeClosed()
-            
-    # Return None if queue is exhausted and no path exists
+
     return None, nodes_expanded
