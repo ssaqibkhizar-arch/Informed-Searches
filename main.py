@@ -3,12 +3,12 @@ import random
 import math
 import time
 
-# Placeholders for the algorithms we will write next
-from gbfs import gbfsVisualizer
-from astar import astarVisualizer
+
+from GBFS import gbfsVisualizer
+from aster import astarVisualizer
 
 WIDTH = 600
-HEIGHT = 800 # Increased height to make room for the expanded metrics dashboard
+HEIGHT = 800 
 ROWS = 20
 UI_HEIGHT = 200
 
